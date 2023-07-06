@@ -6,12 +6,12 @@
 #    By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 14:27:45 by gabrrodr          #+#    #+#              #
-#    Updated: 2023/06/19 14:36:42 by gabrrodr         ###   ########.fr        #
+#    Updated: 2023/07/04 17:45:30 by gabrrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 MLXFLAGS = -L ./minilibx -lm -lmlx -Ilmlx -lXext -lX11
 RM = rm -f
 
@@ -21,6 +21,12 @@ NAME_BONUS =
 SRC = 	map.c \
 	frees.c \
 	main.c \
+	init.c \
+	check.c \
+	render.c \
+	utils.c \
+	movement.c \
+	walks.c \
 
 OBJ = $(SRC:.c=.o)
 

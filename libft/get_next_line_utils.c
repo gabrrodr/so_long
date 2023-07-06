@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:30:26 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/05/10 15:37:02 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:51:26 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ char	*gnl_strjoin(char *stash, char *buffer)
 	return (dst);
 }
 
+char	*check_emptystr(char *str)
+{
+	if (str[0] == '\0')
+	{
+		free(str);
+		str = 0;
+	}
+	return (str);
+}
+
 char	*clean(char *stash)
 {
 	int		i;
@@ -82,5 +92,6 @@ char	*clean(char *stash)
 		str[j++] = stash[i++];
 	str[j] = '\0';
 	free(stash);
+	str = check_emptystr(str);
 	return (str);
 }

@@ -1,46 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frees.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 14:34:06 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/07/06 12:03:44 by gabrrodr         ###   ########.fr       */
+/*   Created: 2023/06/28 17:47:35 by gabrrodr          #+#    #+#             */
+/*   Updated: 2023/06/28 17:47:43 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_map(char **map)
+int	solong_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (!map)
+	while (str[i] && str[i] != '\n')
 	{
-		return ;
+		i++;
 	}
-	while (map[i])
-		free(map[i++]);
-	free(map);
-}
-void	free_game(t_game *game)
-{
-	if(!game)
-		return ;
-	if (game->map)
-	{
-		free_map(game->map);
-	}	
-	if(game->img.mlx_img)
-		mlx_destroy_image(game->mlx_ptr, game->img.mlx_img);
-	if(game->win_ptr)
-		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	if(game->mlx_ptr)
-	{
-		mlx_destroy_display(game->mlx_ptr);
-		free(game->mlx_ptr);
-	}
-	free(game);
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:28:11 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/06/19 15:53:22 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:59:28 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,67 @@
 
 # include <math.h>
 # include "libft/libft.h"
+# include <stdlib.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include "minilibx/mlx.h"
+
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 300
+
+# define SIZE 64
+
+typedef struct s_point
+{
+        int	x;
+        int	y;
+}	t_point;
+
+typedef struct s_img
+{
+    void    *mlx_img;
+    char    *addr;
+    int     bpp;
+    int     line_len;
+    int     endian;
+}   t_img;
 
 typedef struct s_game
 {
-        char    **map;
-        int     rows;
-        int     cols;
-        int     colectables;
-        int     player;
-        int     exit;
+        void    *mlx_ptr;
+        void    *win_ptr;
+	char	**map;
+        int	rows;
+        int	cols;
+        int	colectables;
+        int     gathered;
+        int     moves;
+        int     valid;
+        t_point tile;
+        t_point	player;
+        t_point exit;
+        t_img   img;
 }       t_game;
 
 void	free_map(char **map);
 char	**create_map(char *str);
-int	check(int c, int r, char **map);
+int	check_map(char *str, t_game *game);
+int	check_rectangular(t_game *game);
+int	count_r_c(t_game *game);
+int	solong_strlen(char *str);
+t_game	*init(void);
+void	fill(char **map_copy, t_game *game, int x, int y);
+void	render(t_game *game);
+void	free_game(t_game *game);
+int     handle_keypress(int keysym, t_game *game);
+int     ft_quit(t_game *game);
+void	put_tile(t_game *game, char *img, int x, int y);
+
+
+//walks
+void    walk_up(t_game *game);
+void    walk_down(t_game *game);
+void    walk_right(t_game *game);
+void    walk_left(t_game *game);
 
 #endif

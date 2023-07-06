@@ -6,115 +6,154 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:39:22 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/06/19 15:18:41 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:58:58 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**create_map(char *str)
+static int	check_exit(t_game *game)
 {
-	int	fd;
-	char	**map;
-	int	i;
-	int	j;
-	char	*line;
-	
-	i = 0;
-	fd = open(str, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
-	line = get_next_line(fd);
-	i++;
-	while (line != NULL)
-	{
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
-	close(fd);
-	free(line);
-	map = (char **)malloc(sizeof(char *) * (i + 1));
-	if (!map)
-	{
-		return (NULL);
-	}
-	fd = open(str, O_RDONLY);
-	if (fd < 0)
-		return (NULL);
-	j = 0;
-	while (j != i)
-	{
-		map[j] = get_next_line(fd);
-		j++;
-	}
-	close(fd);
-	return (map);
-}
+	int	x;
+	int	y;
+	int	exit;
 
-void	count(t_game *game)
-{
-	while()
-}
-
-int	check(int c, int r, char **map)
-{
-	int	i;
-	int	j;
-	
-	i = 0;
-	j = 0;
-	//vais ler linha a linha e atualizar map[i], i sendo coluna
-	//guardar o mapa em "**map" e depois sim decidir se o programa vai "comecar" dependendo de paredes
-	if (c < 5 || r < 3)
+	x = 0;
+	y = 0;
+	exit = 0;
+	while (game->map[y])
 	{
-		ft_printf("error\n");
-		free_map(map);
-		exit (1);
-	}
-	//ver se o mapa e retangular
-	while (map[i])
-	{
-		if (ft_strlen(map[0]) != ft_strlen(map[i]))
+		x = 0;
+		while (game->map[y][x])
 		{
-			ft_printf("1: invalid map\n");
-			free_map(map);
-			exit (1);
-		}
-		i++;
-	}
-	i = 0;
-	j = 0;
-	//ver se o mapa esta rodeado de parede = 1
-	while (map[i])
-	{
-		while(map[i][j] != '\n' && i == 0)
-		{
-			if (!(map[0][j] == '1') || !(map[r - 1][j] == '1'))
+			if (game->map[y][x] == 'E')
 			{
-				ft_printf("2: invalid map\n");
-				free_map(map);
-				exit (1);
+				game->exit.y = y;
+				game->exit.x = x;
+				exit++;
 			}
-			j++;
+			x++;
 		}
-		if (!(map[i][0] == '1') || !(map[i][c - 2] == '1'))
-		{
-			ft_printf("3: invalid map\n");
-			free_map(map);
-			exit (1);
-		}
-		i++;
-		
+		y++;
 	}
-	//ver se o mapa tem 1 P, 1 C, 1 E
-	/*while (map)
+	if (exit != 1)
+		return (1);
+	return (0);
+}
+
+static int	check_p_c(t_game *game)
+{
+	int	x;
+	int	y;
+	int	player;
+
+	x = 0;
+	y = 0;
+	player = 0;
+	while (game->map[y])
 	{
-		if (!ft_strchr(map[i++][j++], "P") || !ft_strchr(map[i++][j++], "C") || !ft_strchr(map[i++][j++], "E"))
+		x = 0;
+		while (game->map[y][x])
 		{
-			ft_printf("invalid map\n");
-			exit (1);
+			if (game->map[y][x] == 'P')
+			{
+				game->player.y = y;
+				game->player.x = x;
+				player++;
+			}
+			else if (game->map[y][x] == 'C')
+				game->colectables++;
+			x++;
 		}
-	}*/
+		y++;
+	}
+	if (player != 1 || game->colectables <= 0)
+	{
+		return (1);
+	}
+	return (0);
+}
+
+static int	check_walls(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (game->map[y])
+	{
+		while (game->map[y][x] != '\n' && y == 0)
+		{
+			if (!(game->map[0][x] == '1') || !(game->map[game->rows - 1][x] == '1'))
+			{
+				return (1);
+			}
+			x++;
+		}
+		if (!(game->map[y][0] == '1') || !(game->map[y][game->cols - 1] == '1'))
+		{
+			return (1);
+		}
+		y++;
+	}
+	return (0);
+}
+
+static int	path_check(char *str, t_game *game)
+{
+	char	**map_copy;
+	
+	map_copy = create_map(str);
+	if (!map_copy)
+	{
+		return (1);
+	}
+	fill(map_copy, game, game->player.x, game->player.y);
+	if (!game->exit.y || !game->exit.x)
+	{
+		free_map(map_copy);
+		return (1);
+	}
+	if (map_copy[game->exit.y][game->exit.x] != 'F')
+	{
+		free_map(map_copy);
+		return (1);
+	}
+	if (game->colectables != game->gathered)
+	{
+		free_map(map_copy);
+		return (1);
+	}
+	game->gathered = 0;
+	free_map(map_copy);
+	return (0);
+}
+
+int	check_map(char *str, t_game *game)
+{
+	int	check;
+	
+	check = 0;
+	game->map = create_map(str);
+	if (!game->map)
+	{
+		ft_printf("Invalid Map\n");
+		return (1);
+	}
+	//check number of rows and columns + check if the map is rectangular + check if it has 1 exit + check player and collectables
+	check = count_r_c(game) + check_rectangular(game) + check_exit(game) + check_p_c(game);
+	//check if its surrounded by walls
+	check += check_walls(game);
+	if (check == 0)
+	{
+		check += path_check(str, game);
+	}
+	if (check != 0)
+	{
+		ft_printf("Error: Invalid map\n");
+		game->valid++;
+		return (1);
+	}
 	return (0);
 }
