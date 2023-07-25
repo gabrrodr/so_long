@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:39:22 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/07/06 11:58:58 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:53:03 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ int	check_map(char *str, t_game *game)
 	check = count_r_c(game) + check_rectangular(game) + check_exit(game) + check_p_c(game);
 	//check if its surrounded by walls
 	check += check_walls(game);
+	check += check_letters(game);
 	if (check == 0)
 	{
 		check += path_check(str, game);

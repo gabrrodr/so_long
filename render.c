@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:10:56 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/07/06 18:05:36 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:49:38 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	print_borders(t_game *game, int y, int x)
 	if (y == (game->rows - 1) && x == (game->cols - 1))
 		put_tile(game, "./img/cantoinfdir.xpm", x * SIZE, y * SIZE);
 	if (y == 0 && x > 0 && x < (game->cols - 1))
-		put_tile(game, "./img/wall.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./img/wallup.xpm", x * SIZE, y * SIZE);
 	if (y == (game->rows - 1) && x > 0 && x < (game->cols - 1))
-		put_tile(game, "./img/wall.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./img/walldown.xpm", x * SIZE, y * SIZE);
 	if (y > 0 && y < (game->rows - 1) && x == 0)
-		put_tile(game, "./img/wall.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./img/wallleft.xpm", x * SIZE, y * SIZE);
 	if (y > 0 && y < (game->rows - 1) && x == (game->cols - 1))
-		put_tile(game, "./img/wall.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./img/wallright.xpm", x * SIZE, y * SIZE);
 	if (y > 0 && y < (game->rows - 1) && x > 0 && x < (game->cols - 1))
 		put_tile(game, "./img/wall.xpm", x * SIZE, y * SIZE);
 }
@@ -52,11 +52,11 @@ void	print_elements(t_game *game, int y, int x)
 	if (game->map[y][x] == '0')
 		put_tile(game, "./img/floor.xpm", x * SIZE, y * SIZE);
 	if (game->map[y][x] == 'P')
-		put_tile(game, "./img/queentaytay.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./img/taytay.xpm", x * SIZE, y * SIZE);
 	if (game->map[y][x] == 'E')
 		put_tile(game, "./img/exit.xpm", x * SIZE, y * SIZE);
 	if (game->map[y][x] == 'C')
-		put_tile(game, "./img/vinyl.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./img/collectible1.xpm", x * SIZE, y * SIZE);
 }
 
 void	print_map(t_game *game)

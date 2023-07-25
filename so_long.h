@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:28:11 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/07/06 11:59:28 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:52:37 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	free_game(t_game *game);
 int     handle_keypress(int keysym, t_game *game);
 int     ft_quit(t_game *game);
 void	put_tile(t_game *game, char *img, int x, int y);
+int	check_letters(t_game *game);
+
 
 
 //walks

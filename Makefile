@@ -6,7 +6,7 @@
 #    By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 14:27:45 by gabrrodr          #+#    #+#              #
-#    Updated: 2023/07/04 17:45:30 by gabrrodr         ###   ########.fr        #
+#    Updated: 2023/07/25 16:57:08 by gabrrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MLXFLAGS = -L ./minilibx -lm -lmlx -Ilmlx -lXext -lX11
 RM = rm -f
 
 NAME = so_long
-NAME_BONUS = 
+NAME_BNS = so_long_bonus
 
 SRC = 	map.c \
 	frees.c \
@@ -28,23 +28,46 @@ SRC = 	map.c \
 	movement.c \
 	walks.c \
 
-OBJ = $(SRC:.c=.o)
+BNS =	map_bonus.c \
+	fress_bonus.c \
+	main_bonus.c \
+	init_bonus.c \
+	check_bonus.c \
+	render_bonus.c \
+	utils_bonus.c \
+	movement_bonus.c \
+	walks_bonus.c \
+	collect.c \
+	enemies.c \
+	move_enemies.c \
+	walk_enemy.c \
+
+OBJ_SRC = $(SRC:.c=.o)
+OBJ_BNS = $(BNS:.c=.o)
+
 
 LIBFT = libft/libft.a
 
-all: $(NAME)
+all: deps $(NAME)
 
-$(NAME): $(OBJ)
+deps:
 	$(MAKE) -C ./libft
 	$(MAKE) -C ./minilibx
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+
+$(NAME): $(OBJ_SRC) $(DEPS)
+	$(CC) $(CFLAGS) $(OBJ_SRC) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+
+bonus: deps $(NAME_BNS)
+
+$(NAME_BNS): $(OBJ_BNS) $(DEPS)
+	$(CC) $(CFLAGS) $(OBJ_BNS) $(LIBFT) $(MLXFLAGS) -o $(NAME_BNS)
 
 clean:
 	$(MAKE) clean -C ./libft
 	$(MAKE) clean -C ./minilibx
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJ_SRC) $(OBJ_BNS)
 
 fclean: clean
-	@$(RM) $(LIBFT) $(NAME)
+	@$(RM) $(LIBFT) $(NAME) $(NAME_BNS)
 	
 re: fclean all
