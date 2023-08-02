@@ -6,11 +6,11 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:35:37 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 18:18:13 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:34:55 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "../includes/so_long.h"
 
 static int	check_file(char *str)
 {

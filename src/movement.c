@@ -6,11 +6,11 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:30:53 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 18:18:23 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:35:17 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "../includes/so_long.h"
 
 void    move_down(t_game *game)
 {

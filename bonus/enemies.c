@@ -6,11 +6,11 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 11:15:13 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 17:45:23 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:45:51 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 int    	count_floor(t_game *game)
 {
@@ -79,7 +79,7 @@ void    render_enemies(t_game *game)
         e = -1;
         while (++e < game->enemies)
         {
-                put_tile(game, "./img/scooter1.xpm", game->enemy_x[e] * SIZE, game->enemy_y[e] * SIZE);
+                put_tile(game, "./textures/scooter1.xpm", game->enemy_x[e] * SIZE, game->enemy_y[e] * SIZE);
 		game->map[game->enemy_y[e]][game->enemy_x[e]] = 'S';
         }
 }

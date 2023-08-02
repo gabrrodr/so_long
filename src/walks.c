@@ -6,11 +6,11 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:41:22 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 18:20:22 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:35:35 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./includes/so_long.h"
+# include "../includes/so_long.h"
 
 
 int    ft_quit(t_game *game)

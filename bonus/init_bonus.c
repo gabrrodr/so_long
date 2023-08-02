@@ -6,11 +6,11 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:58:57 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 17:55:09 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:32:23 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 void	init_img(t_game *game)
 {

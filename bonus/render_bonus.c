@@ -6,11 +6,11 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:10:56 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 16:17:44 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:44:20 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 void	put_tile(t_game *game, char *img, int x, int y)
 {
@@ -22,48 +22,48 @@ void	put_tile(t_game *game, char *img, int x, int y)
 	game->img.mlx_img = mlx_xpm_file_to_image(game->mlx_ptr,
             img, &game->tile.x, &game->tile.y);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-        game->img.mlx_img, x, y);
+	game->img.mlx_img, x, y);
 }
 
 void	print_borders(t_game *game, int y, int x)
 {
 	if (y == 0 && x == 0)
-		put_tile(game, "./img/cantosupesq.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/cantosupesq.xpm", x * SIZE, y * SIZE);
 	if (y == 0 && x == (game->cols - 1))
-		put_tile(game, "./img/cantosupdir.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/cantosupdir.xpm", x * SIZE, y * SIZE);
 	if (y == (game->rows - 1) && x == 0)
-		put_tile(game, "./img/cantoinfesq.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/cantoinfesq.xpm", x * SIZE, y * SIZE);
 	if (y == (game->rows - 1) && x == (game->cols - 1))
-		put_tile(game, "./img/cantoinfdir.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/cantoinfdir.xpm", x * SIZE, y * SIZE);
 	if (y == 0 && x > 0 && x < (game->cols - 1))
-		put_tile(game, "./img/wallup.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/wallup.xpm", x * SIZE, y * SIZE);
 	if (y == (game->rows - 1) && x > 0 && x < (game->cols - 1))
-		put_tile(game, "./img/walldown.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/walldown.xpm", x * SIZE, y * SIZE);
 	if (y > 0 && y < (game->rows - 1) && x == 0)
-		put_tile(game, "./img/wallleft.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/wallleft.xpm", x * SIZE, y * SIZE);
 	if (y > 0 && y < (game->rows - 1) && x == (game->cols - 1))
-		put_tile(game, "./img/wallright.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/wallright.xpm", x * SIZE, y * SIZE);
 	if (y > 0 && y < (game->rows - 1) && x > 0 && x < (game->cols - 1))
-		put_tile(game, "./img/wall.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/wall.xpm", x * SIZE, y * SIZE);
 }
 
 void	print_elements(t_game *game, int y, int x)
 {
 	char	*collectible[] = {
-		"./img/collectible1.xpm",
-		"./img/collectible2.xpm",
-		"./img/collectible3.xpm",
-		"./img/collectible4.xpm",
-		"./img/collectible5.xpm",
-		"./img/collectible6.xpm",
+		"./textures/collectible1.xpm",
+		"./textures/collectible2.xpm",
+		"./textures/collectible3.xpm",
+		"./textures/collectible4.xpm",
+		"./textures/collectible5.xpm",
+		"./textures/collectible6.xpm",
 		};
 
 	if (game->map[y][x] == '0')
-		put_tile(game, "./img/floor.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/floor.xpm", x * SIZE, y * SIZE);
 	if (game->map[y][x] == 'P')
-		put_tile(game, "./img/taytay.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/taytay.xpm", x * SIZE, y * SIZE);
 	if (game->map[y][x] == 'E')
-		put_tile(game, "./img/exit.xpm", x * SIZE, y * SIZE);
+		put_tile(game, "./textures/exit.xpm", x * SIZE, y * SIZE);
 	if (game->colectables >= 1 && game->map[y][x] == 'C')
 	{
 		if (game->rotation >= 1)

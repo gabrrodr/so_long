@@ -6,11 +6,11 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:10:56 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 18:19:53 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:35:22 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "../includes/so_long.h"
 
 void	put_tile(t_game *game, char *img, int x, int y)
 {

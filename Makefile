@@ -6,43 +6,42 @@
 #    By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 14:27:45 by gabrrodr          #+#    #+#              #
-#    Updated: 2023/07/27 19:08:58 by gabrrodr         ###   ########.fr        #
+#    Updated: 2023/08/02 19:37:31 by gabrrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
-MLXFLAGS = -L ./minilibx -lm -lmlx -Ilmlx -lXext -lX11
+MLXFLAGS = -L ./minilibx -lm -lmlx -Ilmlx -lXext -lX11 -fsanitize=address
 RM = rm -f
 
 NAME = so_long
 NAME_BNS = so_long_bonus
 
-SRC = 	map.c \
-	frees.c \
-	main.c \
-	init.c \
-	check.c \
-	render.c \
-	utils.c \
-	movement.c \
-	walks.c \
+SRC = 	src/map.c \
+	src/frees.c \
+	src/main.c \
+	src/init.c \
+	src/check.c \
+	src/render.c \
+	src/utils.c \
+	src/movement.c \
+	src/walks.c \
 
-BNS =	map_bonus.c \
-	fress_bonus.c \
-	main_bonus.c \
-	init_bonus.c \
-	check_bonus.c \
-	render_bonus.c \
-	utils_bonus.c \
-	movement_bonus.c \
-	walks_bonus.c \
-	collect.c \
-	enemies.c \
-	move_enemies.c \
-	walk_enemy.c \
-	moves_lives.c \
-	hurt.c \
+BNS =	bonus/map_bonus.c \
+	bonus/fress_bonus.c \
+	bonus/main_bonus.c \
+	bonus/init_bonus.c \
+	bonus/check_bonus.c \
+	bonus/render_bonus.c \
+	bonus/utils_bonus.c \
+	bonus/movement_bonus.c \
+	bonus/walks_bonus.c \
+	bonus/collect.c \
+	bonus/enemies.c \
+	bonus/move_enemies.c \
+	bonus/walk_enemy.c \
+	bonus/hurt.c \
 
 OBJ_SRC = $(SRC:.c=.o)
 OBJ_BNS = $(BNS:.c=.o)

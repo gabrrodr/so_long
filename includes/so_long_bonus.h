@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:28:11 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 16:11:53 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:33:09 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define SO_LONG_BONUS_H
 
 # include <math.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <stdlib.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <time.h>
-# include "minilibx/mlx.h"
+# include "../minilibx/mlx.h"
 
 # define WINDOW_WIDTH 600
 # define WINDOW_HEIGHT 300

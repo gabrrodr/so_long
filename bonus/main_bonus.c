@@ -6,11 +6,11 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:35:37 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 16:50:58 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:46:35 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 static int	check_file(char *str)
 {
@@ -49,9 +49,9 @@ void	render_moves(t_game *game)
 	
 	x = game->cols / 2;
 	y = game->rows;
-	put_tile(game, "./img/black.xpm", x * SIZE, y * SIZE);
-	put_tile(game, "./img/black.xpm", (x + 1) * SIZE, y * SIZE);
-	put_tile(game, "./img/black.xpm", 1 * SIZE, y * SIZE);
+	put_tile(game, "./textures/black.xpm", x * SIZE, y * SIZE);
+	put_tile(game, "./textures/black.xpm", (x + 1) * SIZE, y * SIZE);
+	put_tile(game, "./textures/black.xpm", 1 * SIZE, y * SIZE);
 	moves = ft_itoa(game->moves);
 	lives = ft_itoa(game->lives);
 	x = (game->cols / 2) * SIZE;
