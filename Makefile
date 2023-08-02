@@ -6,7 +6,7 @@
 #    By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 14:27:45 by gabrrodr          #+#    #+#              #
-#    Updated: 2023/07/25 16:57:08 by gabrrodr         ###   ########.fr        #
+#    Updated: 2023/07/27 19:08:58 by gabrrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ BNS =	map_bonus.c \
 	enemies.c \
 	move_enemies.c \
 	walk_enemy.c \
+	moves_lives.c \
+	hurt.c \
 
 OBJ_SRC = $(SRC:.c=.o)
 OBJ_BNS = $(BNS:.c=.o)
