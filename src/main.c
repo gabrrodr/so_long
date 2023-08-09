@@ -14,7 +14,7 @@
 
 static int	check_file(char *str)
 {
-	int	fd;
+	int		fd;
 	char	*ber;
 
 	ber = ".ber";
@@ -42,13 +42,14 @@ static int	check_file(char *str)
 
 int	main(int argc, char **argv)
 {
-        t_game  *game;
+	t_game	*game;
+
 	if (argc != 2 || check_file(argv[1]) != 0)
 	{
 		ft_printf("you need 2 arguments!\n");
 		return (0);
 	}
-        game = init();
+	game = init();
 	if (!game)
 	{
 		free_game(game);

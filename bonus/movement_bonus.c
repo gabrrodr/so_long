@@ -6,159 +6,142 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:30:53 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 19:32:14 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:14:20 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-void    move_down(t_game *game)
+void	move_down(t_game *game)
 {
-        t_point p;
-        
-        p = game->player;
-        if (game->map[p.y + 1][p.x] == '1' ||
-                (game->map[p.y + 1][p.x] == 'E' && game->gathered != game->colectables))
-        {
-                return ;
-        }
-        if (game->map[p.y + 1][p.x] == 'E' && game->gathered == game->colectables)
-        {
-                walk_down(game);
-                ft_printf("🍾🍾YOU GOT THE GRAMMY TAYTAY🍾🍾\n");
-                ft_quit(game);
-                return ;
-        }
-        if (game->map[p.y + 1][p.x] == 'C')
-        {
-                walk_down(game);
-                collect_down(game);
-                game->gathered++;
-                game->map[p.y + 1][p.x] = '0';
-                return ;
-        }
-        if (game->map[p.y + 1][p.x] == 'S')
-        {
-                hurt(game);
-        }
-        else
-                walk_down(game);
+	t_point	p;
+
+	p = game->player;
+	if (game->map[p.y + 1][p.x] == '1' || (game->map[p.y + 1][p.x] == 'E'
+			&& game->gathered != game->colectables))
+		return ;
+	if (game->map[p.y + 1][p.x] == 'E' && game->gathered == game->colectables)
+	{
+		walk_down(game);
+		ft_printf("🍾🍾YOU GOT THE GRAMMY TAYTAY🍾🍾\n");
+		ft_quit(game);
+		return ;
+	}
+	if (game->map[p.y + 1][p.x] == 'C')
+	{
+		walk_down(game);
+		collect_down(game);
+		game->gathered++;
+		game->map[p.y + 1][p.x] = '0';
+		return ;
+	}
+	if (game->map[p.y + 1][p.x] == 'S')
+		hurt(game);
+	else
+		walk_down(game);
 }
 
-void    move_up(t_game *game)
+void	move_up(t_game *game)
 {
-        t_point p;
-        
-        p = game->player;
-        if (game->map[p.y - 1][p.x] == '1' ||
-                (game->map[p.y - 1][p.x] == 'E' && game->gathered != game->colectables))
-        {
-                return ;
-        }
-        if (game->map[p.y - 1][p.x] == 'E' && game->gathered == game->colectables)
-        {
-                walk_up(game);
-                ft_printf("🍾🍾YOU GOT THE GRAMMY TAYTAY🍾🍾\n");
-                ft_quit(game);
-                return ;
-        }
-        if (game->map[p.y - 1][p.x] == 'C')
-        {
-                walk_up(game);
-                collect_up(game);
-                game->gathered++;
-                game->map[p.y - 1][p.x] = '0';
-                return ;
-        }
-        if (game->map[p.y - 1][p.x] == 'S')
-        {
-                hurt(game);
-        }
-        else
-                walk_up(game);
+	t_point	p;
+
+	p = game->player;
+	if (game->map[p.y - 1][p.x] == '1' || (game->map[p.y - 1][p.x] == 'E'
+			&& game->gathered != game->colectables))
+		return ;
+	if (game->map[p.y - 1][p.x] == 'E' && game->gathered == game->colectables)
+	{
+		walk_up(game);
+		ft_printf("🍾🍾YOU GOT THE GRAMMY TAYTAY🍾🍾\n");
+		ft_quit(game);
+		return ;
+	}
+	if (game->map[p.y - 1][p.x] == 'C')
+	{
+		walk_up(game);
+		collect_up(game);
+		game->gathered++;
+		game->map[p.y - 1][p.x] = '0';
+		return ;
+	}
+	if (game->map[p.y - 1][p.x] == 'S')
+		hurt(game);
+	else
+		walk_up(game);
 }
 
-void    move_right(t_game *game)
+void	move_right(t_game *game)
 {
-        t_point p;
-        
-        p = game->player;
-        if (game->map[p.y][p.x + 1] == '1' ||
-                (game->map[p.y][p.x + 1] == 'E' && game->gathered != game->colectables))
-        {
-                return ;
-        }
-        if (game->map[p.y][p.x + 1] == 'E' && game->gathered == game->colectables)
-        {
-                walk_right(game);
-                ft_printf("🍾🍾YOU GOT THE GRAMMY TAYTAY🍾🍾\n");
-                ft_quit(game);
-                return ;
-        }
-        if (game->map[p.y][p.x + 1] == 'C')
-        {
-                walk_right(game);
-                collect_down(game);
-                game->gathered++;
-                game->map[p.y][p.x + 1] = '0';
-                return ;
-        }
-        if (game->map[p.y][p.x + 1] == 'S')
-        {
-                hurt(game);
-        }
-        else
-                walk_right(game);
+	t_point	p;
+
+	p = game->player;
+	if (game->map[p.y][p.x + 1] == '1' || (game->map[p.y][p.x + 1] == 'E'
+			&& game->gathered != game->colectables))
+		return ;
+	if (game->map[p.y][p.x + 1] == 'E' && game->gathered == game->colectables)
+	{
+		walk_right(game);
+		ft_printf("🍾🍾YOU GOT THE GRAMMY TAYTAY🍾🍾\n");
+		ft_quit(game);
+		return ;
+	}
+	if (game->map[p.y][p.x + 1] == 'C')
+	{
+		walk_right(game);
+		collect_down(game);
+		game->gathered++;
+		game->map[p.y][p.x + 1] = '0';
+		return ;
+	}
+	if (game->map[p.y][p.x + 1] == 'S')
+		hurt(game);
+	else
+		walk_right(game);
 }
 
-void    move_left(t_game *game)
+void	move_left(t_game *game)
 {
-        t_point p;
-        
-        p = game->player;
-        if (game->map[p.y][p.x - 1] == '1' ||
-                (game->map[p.y][p.x - 1] == 'E' && game->gathered != game->colectables))
-        {
-                return ;
-        }
-        if (game->map[p.y][p.x - 1] == 'E' && game->gathered == game->colectables)
-        {
-                walk_left(game);
-                ft_printf("🍾🍾YOU GOT THE GRAMMY TAYTAY🍾🍾\n");
-                ft_quit(game);
-        }
-        if (game->map[p.y][p.x - 1] == 'C')
-        {
-                walk_left(game);
-                collect_down(game);
-                game->gathered++;
-                game->map[p.y][p.x - 1] = '0';
-                return ;
-        }
-        if (game->map[p.y][p.x - 1] == 'S')
-        {
-                hurt(game);
-                
-        }
-        else
-                walk_left(game);
+	t_point	p;
+
+	p = game->player;
+	if (game->map[p.y][p.x - 1] == '1' || (game->map[p.y][p.x - 1] == 'E'
+			&& game->gathered != game->colectables))
+		return ;
+	if (game->map[p.y][p.x - 1] == 'E' && game->gathered == game->colectables)
+	{
+		walk_left(game);
+		ft_printf("🍾🍾YOU GOT THE GRAMMY TAYTAY🍾🍾\n");
+		ft_quit(game);
+	}
+	if (game->map[p.y][p.x - 1] == 'C')
+	{
+		walk_left(game);
+		collect_down(game);
+		game->gathered++;
+		game->map[p.y][p.x - 1] = '0';
+		return ;
+	}
+	if (game->map[p.y][p.x - 1] == 'S')
+		hurt(game);
+	else
+		walk_left(game);
 }
 
-int     handle_keypress(int keysym, t_game *game)
+int	handle_keypress(int keysym, t_game *game)
 {
-        int     moves;
+	int	moves;
 
-        moves = game->moves;
-        if (keysym == XK_Escape)
-                ft_quit(game);
-        if (keysym == XK_Up || keysym == XK_w)
-                move_up(game);
-        if (keysym == XK_Down || keysym == XK_s)
-                move_down(game);
-        if (keysym == XK_Right || keysym == XK_d)
-                move_right(game);
-        if (keysym == XK_Left || keysym == XK_a)
-                move_left(game);
-        enemy_position(game, moves);
-        return (0);
+	moves = game->moves;
+	if (keysym == XK_Escape)
+		ft_quit(game);
+	if (keysym == XK_Up || keysym == XK_w)
+		move_up(game);
+	if (keysym == XK_Down || keysym == XK_s)
+		move_down(game);
+	if (keysym == XK_Right || keysym == XK_d)
+		move_right(game);
+	if (keysym == XK_Left || keysym == XK_a)
+		move_left(game);
+	enemy_position(game, moves);
+	return (0);
 }

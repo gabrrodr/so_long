@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:39:22 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 19:35:07 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:35:01 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,12 @@ static int	check_p_c(t_game *game)
 	int	y;
 	int	player;
 
-	x = 0;
-	y = 0;
+	y = -1;
 	player = 0;
-	while (game->map[y])
+	while (game->map[++y])
 	{
-		x = 0;
-		while (game->map[y][x])
+		x = -1;
+		while (game->map[y][++x])
 		{
 			if (game->map[y][x] == 'P')
 			{
@@ -63,14 +62,10 @@ static int	check_p_c(t_game *game)
 			}
 			else if (game->map[y][x] == 'C')
 				game->colectables++;
-			x++;
 		}
-		y++;
 	}
 	if (player != 1 || game->colectables <= 0)
-	{
 		return (1);
-	}
 	return (0);
 }
 
@@ -85,7 +80,8 @@ static int	check_walls(t_game *game)
 	{
 		while (game->map[y][x] != '\n' && y == 0)
 		{
-			if (!(game->map[0][x] == '1') || !(game->map[game->rows - 1][x] == '1'))
+			if (!(game->map[0][x] == '1') || !(game->map[game->rows
+					- 1][x] == '1'))
 			{
 				return (1);
 			}
@@ -103,12 +99,10 @@ static int	check_walls(t_game *game)
 static int	path_check(char *str, t_game *game)
 {
 	char	**map_copy;
-	
+
 	map_copy = create_map(str);
 	if (!map_copy)
-	{
 		return (1);
-	}
 	fill(map_copy, game, game->player.x, game->player.y);
 	if (!game->exit.y || !game->exit.x)
 	{
@@ -133,7 +127,7 @@ static int	path_check(char *str, t_game *game)
 int	check_map(char *str, t_game *game)
 {
 	int	check;
-	
+
 	check = 0;
 	game->map = create_map(str);
 	if (!game->map)
@@ -141,9 +135,8 @@ int	check_map(char *str, t_game *game)
 		ft_printf("Invalid Map\n");
 		return (1);
 	}
-	//check number of rows and columns + check if the map is rectangular + check if it has 1 exit + check player and collectables
-	check = count_r_c(game) + check_rectangular(game) + check_exit(game) + check_p_c(game);
-	//check if its surrounded by walls
+	check = count_r_c(game) + check_rectangular(game) + check_exit(game)
+		+ check_p_c(game);
 	check += check_walls(game);
 	check += check_letters(game);
 	if (check == 0)

@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:35:37 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 19:46:35 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:52:08 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_file(char *str)
 {
-	int	fd;
+	int		fd;
 	char	*ber;
 
 	ber = ".ber";
@@ -44,9 +44,9 @@ void	render_moves(t_game *game)
 {
 	char	*moves;
 	char	*lives;
-	int	x;
-	int	y;
-	
+	int		x;
+	int		y;
+
 	x = game->cols / 2;
 	y = game->rows;
 	put_tile(game, "./textures/black.xpm", x * SIZE, y * SIZE);
@@ -58,29 +58,29 @@ void	render_moves(t_game *game)
 	y = game->rows * SIZE + 32;
 	mlx_string_put(game->mlx_ptr, game->win_ptr, x, y, 0xFFFFFF, "Moves: ");
 	mlx_string_put(game->mlx_ptr, game->win_ptr, x + 42, y, 0x0000FF00, moves);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, 1 * SIZE, y, 0xFF0000, "LIVES: ");
+	mlx_string_put(game->mlx_ptr, game->win_ptr, 1 * SIZE, y, 0xFF0000,
+		"LIVES: ");
 	mlx_string_put(game->mlx_ptr, game->win_ptr, SIZE + 42, y, 0xFFFFFF, lives);
-	free (moves);
-	free (lives);
+	free(moves);
+	free(lives);
 }
 
 int	main(int argc, char **argv)
 {
-        t_game  *game;
+	t_game	*game;
 
 	if (argc != 2 || check_file(argv[1]) != 0)
 	{
 		ft_printf("you need 2 arguments!\n");
 		return (0);
 	}
-        game = init();
+	game = init();
 	if (!game)
 	{
 		free_game(game);
 		return (1);
 	}
-	check_map(argv[1], game);
-	if (!game->map || game->valid != 0)
+	if (check_map(argv[1], game) || !game->map || game->valid != 0)
 	{
 		free_game(game);
 		return (1);
@@ -92,5 +92,4 @@ int	main(int argc, char **argv)
 	}
 	render(game);
 	free_game(game);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:47:35 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 19:32:10 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:24:11 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,19 @@ int	check_letters(t_game *game)
 {
 	int	y;
 	int	x;
-	
+
 	y = 0;
 	x = 0;
 	while (game->map[y])
 	{
 		while (game->map[y][x] != '\n' && game->map[y][x] != '\0')
 		{
-			if (game->map[y][x] != '1' && game->map[y][x] != '0' && 
-				game->map[y][x] != 'P' && game->map[y][x] != 'E' &&
-				game->map[y][x] != 'C')
-			{
+			if (game->map[y][x] != '1' && game->map[y][x] != '0'
+				&& game->map[y][x] != 'P' && game->map[y][x] != 'E'
+				&& game->map[y][x] != 'C')
 				return (1);
-			}
 			x++;
-		}	
+		}
 		x = 0;
 		y++;
 	}
@@ -43,9 +41,7 @@ int	solong_strlen(char *str)
 
 	i = 0;
 	while (str[i] && str[i] != '\n')
-	{
 		i++;
-	}
 	return (i);
 }
 
@@ -66,25 +62,22 @@ void	enemy_position(t_game *game, int moves)
 {
 	int	enemies;
 	int	position;
-	
+
 	position = 0;
 	enemies = game->enemies;
-	while(--enemies >= 0 && moves < game->moves)
+	while (--enemies >= 0 && moves < game->moves)
 	{
-		while(moveability(game, game->enemy_x[enemies], game->enemy_y[enemies]))
+		while (moveability(game, game->enemy_x[enemies],
+				game->enemy_y[enemies]))
 		{
 			enemies--;
 			if (enemies < 0)
-			{
 				return ;
-			}
 		}
 		position = game->enemy_x[enemies] + game->enemy_y[enemies];
 		move_enemy(game, enemies);
 		if (position == game->enemy_x[enemies] + game->enemy_y[enemies])
-		{
 			enemies++;
-		}
 	}
 }
 
@@ -92,24 +85,21 @@ void	enemies_position(t_game *game)
 {
 	int	enemies;
 	int	position;
-	
+
 	position = 0;
 	enemies = game->enemies;
-	while(--enemies >= 0)
+	while (--enemies >= 0)
 	{
-		while(moveability(game, game->enemy_x[enemies], game->enemy_y[enemies]))
+		while (moveability(game, game->enemy_x[enemies],
+				game->enemy_y[enemies]))
 		{
 			enemies--;
 			if (enemies < 0)
-			{
-				return ;
-			}
+				return ; 
 		}
 		position = game->enemy_x[enemies] + game->enemy_y[enemies];
 		move_enemy(game, enemies);
-	}
-	if (position == game->enemy_x[enemies] + game->enemy_y[enemies])
-	{
-		enemies++;
+		if (position == game->enemy_x[enemies] + game->enemy_y[enemies])	
+			enemies++;
 	}
 }

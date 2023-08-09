@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frees.c                                            :+:      :+:    :+:   */
+/*   frees_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:34:06 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/03 16:37:04 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:43:40 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	free_map(char **map)
 {
@@ -43,5 +43,9 @@ void	free_game(t_game *game)
 		mlx_destroy_display(game->mlx_ptr);
 		free(game->mlx_ptr);
 	}
+	if (game->enemy_x)
+		free(game->enemy_x);
+	if (game->enemy_y)
+		free(game->enemy_y);
 	free(game);
 }

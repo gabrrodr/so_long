@@ -6,24 +6,11 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:10:56 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 19:35:22 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:37:23 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-void	put_tile(t_game *game, char *img, int x, int y)
-{
-	if (game->img.mlx_img)
-	{
-		mlx_destroy_image(game->mlx_ptr, game->img.mlx_img);
-		game->img.mlx_img = 0;
-	}
-	game->img.mlx_img = mlx_xpm_file_to_image(game->mlx_ptr,
-            img, &game->tile.x, &game->tile.y);
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-        game->img.mlx_img, x, y);
-}
 
 void	print_borders(t_game *game, int y, int x)
 {
@@ -63,34 +50,34 @@ void	print_map(t_game *game)
 {
 	int	y;
 	int	x;
-	
+
 	y = -1;
 	while (game->map[++y])
 	{
 		x = -1;
 		while (game->map[y][++x])
 		{
-			if (game->map[y][x] == '1')			
+			if (game->map[y][x] == '1')
 				print_borders(game, y, x);
 			if (game->map[y][x] != '1')
 				print_elements(game, y, x);
 		}
-		
 	}
-	
 }
 
 void	render_window(t_game *game)
 {
-	game->win_ptr = mlx_new_window(game->mlx_ptr, game->cols * SIZE, game->rows * SIZE, "welcome!");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, game->cols * SIZE, game->rows
+			* SIZE, "welcome!");
 	if (!game->win_ptr)
 	{
 		free(game->win_ptr);
 		return ;
 	}
-	game->img.mlx_img = mlx_new_image(game->mlx_ptr, game->cols * SIZE, game->rows * SIZE);
+	game->img.mlx_img = mlx_new_image(game->mlx_ptr, game->cols * SIZE,
+			game->rows * SIZE);
 	game->img.addr = mlx_get_data_addr(game->img.mlx_img, &game->img.bpp,
-            &game->img.line_len, &game->img.endian);
+			&game->img.line_len, &game->img.endian);
 }
 
 void	render(t_game *game)

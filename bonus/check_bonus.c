@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:43:20 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 19:32:38 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:38:51 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	count_r_c(t_game *game)
 
 	rows = 0;
 	cols = 0;
-	while(game->map[rows] != NULL)
+	while (game->map[rows] != NULL)
 		rows++;
 	if (rows > 0)
 	{
@@ -52,10 +52,10 @@ int	count_r_c(t_game *game)
 
 static int	lines(char *str)
 {
-	int	fd;
-	int	i;
+	int		fd;
+	int		i;
 	char	*line;
-	
+
 	i = 0;
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
@@ -73,11 +73,11 @@ static int	lines(char *str)
 
 char	**create_map(char *str)
 {
-	int	fd;
+	int		fd;
 	char	**map;
-	int	i;
-	int	j;
-	
+	int		i;
+	int		j;
+
 	i = lines(str);
 	map = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!map)
@@ -103,18 +103,14 @@ char	**create_map(char *str)
 void	fill(char **map_copy, t_game *game, int x, int y)
 {
 	if (map_copy[y][x] == '\0' || map_copy[y][x] == '\n')
-	{
 		return ;
-	}
 	if (x < 0 || y < 0 || x >= game->cols || y >= game->rows)
-	{
 		return ;
-	}
 	if (map_copy[y][x] == 'F' || map_copy[y][x] == '1')
-	{
 		return ;
-	}
-	if(map_copy[y][x] == 'C')
+	if (map_copy[y][x] == 'E' && game->colectables != game->gathered)
+		return ;
+	if (map_copy[y][x] == 'C')
 	{
 		map_copy[y][x] = 'F';
 		game->gathered++;

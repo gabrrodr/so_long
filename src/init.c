@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:58:57 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 19:34:50 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:36:44 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,10 @@ void	init_game(t_game *game)
 t_game	*init(void)
 {
 	t_game	*game;
-	
+
 	game = malloc(sizeof(t_game));
-	if(!game)
-	{
+	if (!game)
 		return (NULL);
-	}
 	game->tile.x = 64;
 	game->tile.y = 64;
 	init_img(game);

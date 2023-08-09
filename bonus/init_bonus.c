@@ -6,7 +6,7 @@
 /*   By: gabrrodr <gabrrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:58:57 by gabrrodr          #+#    #+#             */
-/*   Updated: 2023/08/02 19:32:23 by gabrrodr         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:11:41 by gabrrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_game(t_game *game)
 	game->gathered = 0;
 	game->player.x = 0;
 	game->player.y = 0;
+	game->p = 0;
 	game->exit.x = 0;
 	game->exit.y = 0;
 	game->map = NULL;
@@ -48,10 +49,10 @@ void	init_game(t_game *game)
 t_game	*init(void)
 {
 	t_game	*game;
-	
+
 	srand(time(NULL));
 	game = malloc(sizeof(t_game));
-	if(!game)
+	if (!game)
 	{
 		return (NULL);
 	}

@@ -12,12 +12,12 @@
 
 #include "../includes/so_long_bonus.h"
 
-int    	count_floor(t_game *game)
+int	count_floor(t_game *game)
 {
 	int	x;
 	int	y;
 	int	t;
-	
+
 	t = 0;
 	y = -1;
 	while (game->map[++y])
@@ -50,7 +50,7 @@ int	init_enemy(t_game *game)
 	int	y;
 	int	x;
 	int	enemies;
-	
+
 	game->enemies = count_floor(game) / 20;
 	game->enemy_x = ft_calloc(game->enemies, sizeof(int));
 	game->enemy_y = ft_calloc(game->enemies, sizeof(int));
@@ -72,14 +72,15 @@ int	init_enemy(t_game *game)
 	return (0);
 }
 
-void    render_enemies(t_game *game)
+void	render_enemies(t_game *game)
 {
-        int     e;
-        
-        e = -1;
-        while (++e < game->enemies)
-        {
-                put_tile(game, "./textures/scooter1.xpm", game->enemy_x[e] * SIZE, game->enemy_y[e] * SIZE);
+	int	e;
+
+	e = -1;
+	while (++e < game->enemies)
+	{
+		put_tile(game, "./textures/scooter1.xpm", game->enemy_x[e] * SIZE,
+			game->enemy_y[e] * SIZE);
 		game->map[game->enemy_y[e]][game->enemy_x[e]] = 'S';
-        }
+	}
 }
