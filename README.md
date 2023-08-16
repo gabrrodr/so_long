@@ -14,18 +14,9 @@
 
 Taylor Lost 6 albums to Scooter Braun when BMR sold them from under her. Help her get them back, avoid all the Scooters and get another grammy (12 aren't enough)!!
 
-	
-![fullscreenshot(1)](https://github.com/pmagalha/so_long/assets/136360645/36f866f3-e2d8-4065-ba02-a597be32a585)
-
-EBA satisfies her hunger with the little nigiris spread across the world. Her face turns demonic when hungry, and turns back to her original wobbly cuteness when fed.
-
-*Disclaimer: Any resemblance to any actual person or to my girlfriend is purely coincidental.*
-
-![eating2](https://github.com/pmagalha/so_long/assets/136360645/1a25451c-7563-4dae-981d-787a7e7cf797)
-
-Be careful not to get caught by the evil blue hunger demons. EBA's stomach will implode inwards and she will vanish into hungry eternal oblivion.
-
-![death](https://github.com/pmagalha/so_long/assets/136360645/60270d27-d83d-4288-ad73-750e979d8791)
+![screenshot](https://github.com/gabrrodr/so_long/assets/131457203/e07d5746-06ee-46c3-8799-016149385b38)
+  
+*Disclaimer: if you think that all the pixel art looks weird and like i did it, you'd be correct. i tried my best (sometimes)*
 
 </div>
 
